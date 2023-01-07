@@ -109,3 +109,56 @@ function solution (roman) {
   }
 
   console.log(solution('MMCXCV'));
+
+
+//   Write a function that takes a string of parentheses, and determines if the order of the parentheses is valid. 
+// The function should return true if the string is valid, and false if it's invalid.
+
+//   Examples
+//   "()"              =>  true
+//   ")(()))"          =>  false
+//   "("               =>  false
+//   "(())((()())())"  =>  true
+
+  function validParentheses(parens) {
+    if (parens[0] == ')' || parens.at(-1) == '(') {
+        return false;
+    }
+    if (parens[0] + parens[1] == '()' && parens[2] == ')') {
+        return false;
+    }
+    let filter1 = parens.split('')
+            .filter(item => item == '(');
+    console.log(filter1);
+    let filter2 = parens.split('')
+            .filter(item => item == ')');
+    console.log(filter2);
+
+    return (filter1.length == filter2.length) ? true: false;
+  }
+
+  console.log(validParentheses("())(()"));
+
+
+// Create a function that takes a string and returns the string ciphered with Rot13.
+// If there are numbers or special characters included in the string, they should be returned as they are. 
+// Only letters from the latin/english alphabet should be shifted, like in the original Rot13 "implementation".
+
+
+
+  function rot13(message){
+    let result = '',
+        lowerMessage = message.toLowerCase();
+    for (let i = 0; i < lowerMessage.length; i++) {
+        if (/^[a-zA-Z0-9]+$/.test(lowerMessage[i])) {
+            result += String.fromCharCode(lowerMessage.charCodeAt(i) + 13);
+            continue;
+        }
+        result += lowerMessage[i];
+    }
+    return result;
+  }
+
+  console.log(rot13('test'));
+
+  
